@@ -9,8 +9,7 @@ public class MatrixMultiplicationWithThread {
 
     public static void main(String[] args) {
         String fileName = "matrices.txt";
-        Random rand = new Random();
-        int r = rand.nextInt(100); 
+        int r = Integer.valueOf(args[0]);
         generateRandomMatricesToFile(fileName, r);
 
         int[][][] matrices = readMatricesFromFile(fileName);
@@ -20,7 +19,6 @@ public class MatrixMultiplicationWithThread {
             int[][] resultMatrix = new int[r][r];
 
             Thread[] threads = new Thread[r];
-            //long[] threadTimes = new long[r];
 
             long startTime = System.currentTimeMillis();
             for (int i = 0; i < r; i++) {
@@ -56,7 +54,7 @@ public class MatrixMultiplicationWithThread {
             System.out.println("Matrix C:");
             printMatrix(resultMatrix);
             
-            System.out.println("toplam zaman "+threadTimes + " mıllısanıye" );
+            System.out.println("Toplam zaman: "+threadTimes + " milisaniye" );
 
             
         } else {

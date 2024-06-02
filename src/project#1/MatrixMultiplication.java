@@ -9,8 +9,7 @@ public class MatrixMultiplication {
 
     public static void main(String[] args) {
         String fileName = "matrices2.txt";
-        Random rand = new Random();
-        int r = rand.nextInt(100);
+        int r = Integer.valueOf(args[0]);
         generateRandomMatricesToFile(fileName, r);
 
         int[][][] matrices = readMatricesFromFile(fileName);
@@ -21,14 +20,7 @@ public class MatrixMultiplication {
 
             long startTime = System.currentTimeMillis();
             
-            for (int i = 0; i < r; i++) {
-                for (int j = 0; j < r; j++) {
-                    resultMatrix[i][j] = 0;
-                    for (int k = 0; k < r; k++) {
-                        resultMatrix[i][j] += matrixA[i][k] * matrixB[k][j];
-                    }
-                }
-            }
+            multiplyMatrices(matrixA, matrixB, resultMatrix, r);
 
             long endTime = System.currentTimeMillis();
             long elapsedTime = endTime - startTime;
@@ -112,5 +104,17 @@ public class MatrixMultiplication {
             System.out.println();
         }
         System.out.println();
+    }
+
+    // Matris çarpma işlemi
+    public static void multiplyMatrices(int[][] matrixA, int[][] matrixB, int[][] resultMatrix, int r) {
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < r; j++) {
+                resultMatrix[i][j] = 0;
+                for (int k = 0; k < r; k++) {
+                    resultMatrix[i][j] += matrixA[i][k] * matrixB[k][j];
+                }
+            }
+        }
     }
 }
